@@ -21,3 +21,20 @@ it("updates the display when the button is clicked", () => {
   expect(Number(getNodeText(strikeArea))).toBe(initialStrikes + 1);
   expect(Number(getNodeText(ballArea))).toBe(initialBalls + 1);
 });
+
+it("does not increase ball or strike counter beyond limit", () => {
+  const app = render(<App />);
+  const { getByText, getByTestId } = app;
+  const strikesButton = getByText("Strike");
+  const ballsButton = getByText("Ball");
+  const strikeArea = getByTestId("strikes-display");
+  const ballArea = getByTestId("balls-display");
+
+  for (let i = 0; i < 10; i++) {
+    fireEvent.click(strikesButton);
+    fireEvent.click(ballsButton);
+  }
+
+  expect(Number(getNodeText(ballArea))).toBe(4);
+  expect(Number(getNodeText(strikeArea))).toBe(3);
+});

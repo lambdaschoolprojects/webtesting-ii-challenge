@@ -1,10 +1,9 @@
 import React from "react";
-import { render, getNodeText, fireEvent } from "@testing-library/react";
+import { render, getNodeText } from "@testing-library/react";
 import "@testing-library/react/cleanup-after-each";
 import "jest-dom/extend-expect";
 
 import Dashboard from "../Dashboard";
-import Display from "../Display";
 
 it("renders without error", () => {
   render(<Dashboard />);

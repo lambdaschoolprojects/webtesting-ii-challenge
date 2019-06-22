@@ -9,11 +9,20 @@ class App extends Component {
   };
 
   addAction = type => {
-    const current = this.state[type];
+    let value = this.state[type];
 
-    this.setState({
-      [type]: current + 1
-    });
+    switch (type) {
+      case "balls":
+        if (this.state.balls < 4) value++;
+        break;
+      case "strikes":
+        if (this.state.strikes < 3) value++;
+        break;
+      default:
+        value++;
+    }
+
+    this.setState({ [type]: value });
 
     setTimeout(() => console.log(this.state), 5);
   };
