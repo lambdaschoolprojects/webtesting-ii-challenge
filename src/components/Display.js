@@ -1,15 +1,7 @@
-import React from 'react';
-
-import Dashboard from './Dashboard';
-import Display from './Display';
+import React from "react";
 
 const Display = () => {
-    return (
-        <>
-            <Display/>
-            <Dashboard/>
-        </>
-    )
-}
+  return <div>Display</div>;
+};
 
 export default Display;
