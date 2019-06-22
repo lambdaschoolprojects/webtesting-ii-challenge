@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { render } from "@testing-library/react";
+import { render, getNodeText } from "@testing-library/react";
 import "@testing-library/react/cleanup-after-each";
 import "jest-dom/extend-expect";
 
@@ -20,12 +20,12 @@ it("renders balls", () => {
   const { getByTestId } = render(<Display {...gameData} />);
   const ballsArea = getByTestId("balls-display");
 
-  expect(ballsArea.innerText).toBe(gameData.balls + "");
+  expect(getNodeText(ballsArea)).toBe(gameData.balls + "");
 });
 
 it("renders strikes", () => {
   const { getByTestId } = render(<Display {...gameData} />);
   const strikesArea = getByTestId("strikes-display");
 
-  expect(strikesArea.innerText).toBe(gameData.strikes + "");
+  expect(getNodeText(strikesArea)).toBe(gameData.strikes + "");
 });
