@@ -1,5 +1,5 @@
 import React from "react";
-import { render, getNodeText } from "@testing-library/react";
+import { render, getNodeText, fireEvent } from "@testing-library/react";
 import "@testing-library/react/cleanup-after-each";
 import "jest-dom/extend-expect";
 
@@ -23,4 +23,37 @@ it("renders the buttons (strike, foul, ball, hit)", () => {
   expect(buttonsFound).toBe(requiredButtons.length);
 });
 
-it("updates the display with a button is clicked (strike or ball)", () => {});
+it("updates the display when a button is clicked (strike or ball)", () => {
+  const { getByText } = render(<Dashboard />);
+  const strikeButton = getByText(/strike/i);
+  const ballButton = getByText(/ball/i);
+
+  const { getByTestId } = render(<Display />);
+  const strikes = getByTestId("strikes-display");
+  const balls = getByTestId("balls-display");
+
+  const initialStrikes = Number(getNodeText(strikes));
+  const initialBalls = Number(getNodeText(balls));
+
+  fireEvent(
+    strikeButton,
+    new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true
+    })
+  );
+
+  fireEvent(
+    ballButton,
+    new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true
+    })
+  );
+
+  const newStrikes = Number(getNodeText(strikes));
+  const newBalls = Number(getNodeText(balls));
+
+  expect(newStrikes).toBe(initialStrikes + 1);
+  expect(newBalls).toBe(initialBalls + 1);
+});
