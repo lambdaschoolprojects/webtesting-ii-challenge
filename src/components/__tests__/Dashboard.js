@@ -35,21 +35,9 @@ it("updates the display when a button is clicked (strike or ball)", () => {
   const initialStrikes = Number(getNodeText(strikes));
   const initialBalls = Number(getNodeText(balls));
 
-  fireEvent(
-    strikeButton,
-    new MouseEvent("click", {
-      bubbles: true,
-      cancelable: true
-    })
-  );
+  fireEvent.click(strikeButton);
 
-  fireEvent(
-    ballButton,
-    new MouseEvent("click", {
-      bubbles: true,
-      cancelable: true
-    })
-  );
+  fireEvent.click(ballButton);
 
   const newStrikes = Number(getNodeText(strikes));
   const newBalls = Number(getNodeText(balls));

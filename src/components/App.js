@@ -3,11 +3,26 @@ import Display from "./Display";
 import Dashboard from "./Dashboard";
 
 class App extends Component {
+  state = {
+    balls: 0,
+    strikes: 0
+  };
+
+  addAction = type => {
+    const current = this.state[type];
+    console.log("click");
+
+    this.setState({
+      [type]: current + 1
+    });
+
+    setTimeout(() => console.log(this.state), 5);
+  };
   render() {
     return (
       <>
-        <Display />
-        <Dashboard />
+        <Display {...this.state} />
+        <Dashboard addAction={this.addAction} />
       </>
     );
   }

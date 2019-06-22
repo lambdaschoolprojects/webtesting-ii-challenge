@@ -2,13 +2,13 @@ import React from "react";
 
 import Button from "./Button";
 
-const Dashboard = () => {
+const Dashboard = props => {
   return (
     <div data-testid="component-dashboard">
-      <Button text="Strike" />
-      <Button text="Ball" />
-      <Button text="Hit" />
-      <Button text="Foul" />
+      <Button text="Strike" addAction={props.addAction} />
+      <Button text="Ball" addAction={props.addAction} />
+      <Button text="Hit" addAction={props.addAction} />
+      <Button text="Foul" addAction={props.addAction} />
     </div>
   );
 };
