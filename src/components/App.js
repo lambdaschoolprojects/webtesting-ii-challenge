@@ -10,7 +10,6 @@ class App extends Component {
 
   addAction = type => {
     const current = this.state[type];
-    console.log("click");
 
     this.setState({
       [type]: current + 1

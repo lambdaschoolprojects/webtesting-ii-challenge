@@ -22,26 +22,3 @@ it("renders the buttons (strike, foul, ball, hit)", () => {
 
   expect(buttonsFound).toBe(requiredButtons.length);
 });
-
-it("updates the display when a button is clicked (strike or ball)", () => {
-  const { getByText } = render(<Dashboard />);
-  const strikeButton = getByText(/strike/i);
-  const ballButton = getByText(/ball/i);
-
-  const { getByTestId } = render(<Display />);
-  const strikes = getByTestId("strikes-display");
-  const balls = getByTestId("balls-display");
-
-  const initialStrikes = Number(getNodeText(strikes));
-  const initialBalls = Number(getNodeText(balls));
-
-  fireEvent.click(strikeButton);
-
-  fireEvent.click(ballButton);
-
-  const newStrikes = Number(getNodeText(strikes));
-  const newBalls = Number(getNodeText(balls));
-
-  expect(newStrikes).toBe(initialStrikes + 1);
-  expect(newBalls).toBe(initialBalls + 1);
-});
