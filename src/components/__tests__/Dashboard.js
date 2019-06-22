@@ -11,20 +11,16 @@ it("renders without error", () => {
 });
 
 it("renders the buttons (strike, foul, ball, hit)", () => {
-  const { getAllByTestId } = render(<Display />);
+  const { getAllByTestId } = render(<Dashboard />);
   const buttons = getAllByTestId("dashboard-button");
-  const requiredButtons = ["Hit", "Strike", "Ball", "foul"];
-  let buttonsFound = false;
+  const requiredButtons = ["Hit", "Strike", "Ball", "Foul"];
+  let buttonsFound = 0;
 
-  buttons.forEach((button, i) => {
-    if (requiredButtons.includes(getNodeText(button))) {
-      requiredButtons.splice(i, 1);
-    }
+  buttons.forEach(button => {
+    if (requiredButtons.includes(getNodeText(button))) buttonsFound++;
   });
 
-  buttonsFound = requiredButtons.length == 0;
-
-  expect(buttonsFound).toBeTruthy();
+  expect(buttonsFound).toBe(requiredButtons.length);
 });
 
 it("updates the display with a button is clicked (strike or ball)", () => {});
